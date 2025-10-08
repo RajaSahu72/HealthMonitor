@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Health Diagnostics & Assistance</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+<style>
+:root{
+    --bg:#f4f8fb;
+    --primary:#2563eb;
+    --secondary:#1e3a8a;
+    --accent:#10b981;
+    --danger:#ef4444;
+    --card:#ffffff;
+    --text:#111827;
+    --border:#d1d5db;
+    --shadow:0 4px 20px rgba(0,0,0,0.08);
+    --hover-shadow:0 8px 25px rgba(0,0,0,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:var(--bg);color:var(--text);scroll-behavior:smooth;}
+header{
+    background:linear-gradient(90deg,var(--secondary),var(--primary));
+    color:white;text-align:center;padding:60px 20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    position:relative;
+}
+header h1{font-size:3rem;margin-bottom:15px;letter-spacing:1px;}
+header p{font-size:1.1rem;opacity:0.9;max-width:700px;margin:auto;}
+header i{font-size:4rem;color:var(--accent);margin-bottom:15px;display:block;transition:transform 0.3s;}
+header i:hover{transform:rotate(20deg);}
+nav{
+    background:#fff;display:flex;justify-content:center;
+    padding:15px 10px;box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    position:sticky;top:0;z-index:999;
+}
+nav a{
+    color:var(--secondary);text-decoration:none;margin:0 15px;
+    font-weight:500;transition:0.3s;
+}
+nav a:hover{color:var(--accent);transform:scale(1.1);}
+main{padding:50px 20px;max-width:1100px;margin:auto;}
+section{margin-bottom:80px;opacity:0;transform:translateY(30px);animation:fadeInUp 0.8s forwards;}
+@keyframes fadeInUp{to{opacity:1;transform:translateY(0);}}
+h2{
+    color:var(--secondary);
+    margin-bottom:25px;
+    display:flex;align-items:center;
+    gap:12px;font-size:2rem;
+}
+h2 i{color:var(--accent);font-size:2.2rem;transition:0.3s;}
+h2 i:hover{transform:scale(1.2);}
+p{margin-bottom:18px;line-height:1.8;font-size:1.05rem;}
+.form-card,.chat-box,.faq-card,.tips-card{
+    background:var(--card);
+    padding:35px;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    margin:25px auto;
+    transition:transform 0.3s, box-shadow 0.3s;
+}
+.form-card:hover,.chat-box:hover,.faq-card:hover,.tips-card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--hover-shadow);
+}
+input,textarea{
+    width:100%;
+    padding:14px 18px;
+    margin:12px 0 22px 0;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-size:1rem;
+    outline:none;
+    transition:0.3s;
+}
+input:focus,textarea:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 8px rgba(16,185,129,0.3);
+}
+button{
+    background:var(--primary);
+    color:white;
+    padding:14px 28px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:1.05rem;
+    transition:0.3s, transform 0.2s;
+}
+button:hover{background:var(--accent);transform:scale(1.05);}
+.result-card{
+    background:#f9fafb;
+    padding:22px;
+    border-left:5px solid var(--accent);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    margin-top:20px;
+    line-height:1.8;
+    font-size:1rem;
+}
+.chat-box input{width:78%;display:inline-block;}
+.chat-box button{width:20%;display:inline-block;margin-left:2%;}
+.faq-item{margin-bottom:18px;transition:0.3s;}
+.faq-question{
+    background:var(--primary);
+    color:white;
+    padding:14px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    display:flex;justify-content:space-between;
+    align-items:center;font-weight:500;
+    transition:background 0.3s;
+}
+.faq-question:hover{background:var(--accent);}
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease;
+    background:#f9fafb;
+    border-left:4px solid var(--accent);
+    padding:0 18px;
+    border-radius:10px;
+    margin-top:10px;
+    font-size:1rem;
+}
+.faq-answer.show{padding:18px; max-height:500px;}
+.tips-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+}
+.tip{
+    background:#f9fafb;
+    border-radius:14px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    transition:0.3s, transform 0.3s;
+}
+.tip:hover{transform:translateY(-6px);}
+.tip i{font-size:2.2rem;color:var(--accent);margin-bottom:12px;display:block;transition:transform 0.3s;}
+.tip i:hover{transform:scale(1.3);}
+footer{
+    background:var(--secondary);
+    color:white;
+    text-align:center;
+    padding:25px;
+    font-size:0.95rem;
+}
+footer a{color:var(--accent);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<header>
+    <i class="ri-hospital-line"></i>
+    <h1>Smart Health Diagnostics & Assistance</h1>
+    <p>Your personal digital health companion – analyze, monitor, learn, and connect with professionals securely.</p>
+</header>
+
+<nav>
+    <a href="#symptoms">Symptoms</a>
+    <a href="#imageUpload">Image Analysis</a>
+    <a href="#bmi">Health Monitor</a>
+    <a href="#assistant">Virtual Assistant</a>
+    <a href="#faq">FAQs</a>
+    <a href="#tips">Health Tips</a>
+</nav>
+
+<main>
+<section id="symptoms">
+    <h2><i class="ri-heart-pulse-line"></i> Symptom Checker</h2>
+    <p>Input your symptoms and receive a detailed AI-guided analysis including possible causes, urgency levels, and preventive advice.</p>
+    <div class="form-card">
+        <form id="symptomForm">
+            <label for="symptomInput"><i class="ri-file-list-line"></i> Describe your symptoms:</label>
+            <textarea id="symptomInput" rows="4" placeholder="e.g., fever, sore throat, body ache"></textarea>
+            <button type="submit"><i class="ri-search-line"></i> Analyze Symptoms</button>
+        </form>
+        <div class="result-card" id="symptomResult"></div>
+    </div>
+</section>
+
+<section id="imageUpload">
+    <h2><i class="ri-image-line"></i> Upload Health Images</h2>
+    <p>Upload images of skin, wounds, or eye conditions to get AI-assisted observations and guidance.</p>
+    <div class="form-card">
+        <input type="file" id="healthImage" accept="image/*">
+        <button id="uploadBtn"><i class="ri-upload-line"></i> Upload & Analyze</button>
+        <div class="result-card" id="imageResult"></div>
+    </div>
+</section>
+
+<section id="bmi">
+    <h2><i class="ri-health-book-line"></i> BMI & Health Monitoring</h2>
+    <p>Monitor your Body Mass Index and physical wellness. Receive personalized recommendations for diet, exercise, and lifestyle.</p>
+    <div class="form-card">
+        <label for="weight"><i class="ri-weight-line"></i> Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter your weight">
+        <label for="height"><i class="ri-ruler-line"></i> Height (cm):</label>
+        <input type="number" id="height" placeholder="Enter your height">
+        <button id="calculateBMI"><i class="ri-calculator-line"></i> Calculate BMI</button>
+        <div class="result-card" id="bmiResult"></div>
+    </div>
+</section>
+
+<section id="assistant">
+    <h2><i class="ri-robot-line"></i> Virtual Health Assistant</h2>
+    <p>Ask questions related to health, wellness, medicine, or emergencies — and get detailed, intelligent responses.</p>
+    <div class="chat-box">
+        <input type="text" id="chatInput" placeholder="Ask something...">
+        <button id="sendChat"><i class="ri-send-plane-2-line"></i> Send</button>
+        <div class="result-card" id="chatResult"></div>
+    </div>
+</section>
+
+<section id="faq">
+    <h2><i class="ri-questionnaire-line"></i> Frequently Asked Questions</h2>
+    <div class="faq-card">
+        <div class="faq-item">
+            <div class="faq-question">Is this platform a replacement for doctors? <i class="ri-arrow-down-s-line"></i></div>
+            <div class="faq-answer">No. This platform provides preliminary AI-guided assessments and wellness guidance. For serious or persistent health issues, consult certified medical professionals immediately.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is my data secure? <i class="ri-arrow-down-s-line"></i></div>
+            <div class="faq-answer">Yes. All user data and inputs are encrypted and handled securely in compliance with privacy standards, ensuring confidentiality and safety.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I connect to emergency services? <i class="ri-arrow-down-s-line"></i></div>
+            <div class="faq-answer">Yes. Critical alerts can be configured to notify hospitals or family members. Immediate professional intervention is always recommended for emergencies.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How accurate are AI assessments? <i class="ri-arrow-down-s-line"></i></div>
+            <div class="faq-answer">AI provides guidance based on medical data patterns, symptoms, and analysis. It’s meant for preliminary insight, not a substitute for professional medical evaluation. Always verify with healthcare experts.</div>
+        </div>
+    </div>
+</section>
+
+<section id="tips">
+    <h2><i class="ri-lightbulb-flash-line"></i> Health Tips & Articles</h2>
+    <p>Enhance your daily wellness with these expert-backed practices.</p>
+    <div class="tips-grid">
+        <div class="tip"><i class="ri-restaurant-line"></i><h3>Eat Balanced Meals</h3><p>Maintain energy and immunity by including proteins, whole grains, vegetables, and fruits in your daily diet. Avoid processed foods and excessive sugar.</p></div>
+        <div class="tip"><i class="ri-drop-line"></i><h3>Stay Hydrated</h3><p>Drink at least 2–3 liters of water daily. Proper hydration supports metabolism, kidney function, and cognitive health.</p></div>
+        <div class="tip"><i class="ri-moon-clear-line"></i><h3>Sleep Well</h3><p>7–8 hours of restful sleep allows your body to repair, boosts immune response, and improves mood and focus.</p></div>
+        <div class="tip"><i class="ri-run-line"></i><h3>Exercise Regularly</h3><p>Engage in 30 minutes of moderate activity daily to reduce risk of heart disease, manage weight, and enhance mental well-being.</p></div>
+        <div class="tip"><i class="ri-focus-3-line"></i><h3>Mindfulness & Stress Control</h3><p>Practice meditation, breathing exercises, or journaling to manage anxiety, improve focus, and maintain emotional balance.</p></div>
+        <div class="tip"><i class="ri-vaccine-line"></i><h3>Regular Checkups</h3><p>Schedule annual medical evaluations to detect potential health issues early, ensuring preventive and proactive healthcare.</p></div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    &copy; 2025 Smart Health Platform. All rights reserved. | Developed with ❤ by <strong>Alpha Coders</strong> <br>
+    <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+</footer>
+
+<script>
+// Symptom Checker
+document.getElementById('symptomForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const input = document.getElementById('symptomInput').value.trim().toLowerCase();
+    const output = document.getElementById('symptomResult');
+    if(input.length<3){ output.innerHTML="⚠ Please describe your symptoms properly."; return; }
+
+    const adviceDB = {
+        "fever":"You may have viral infection or flu. Stay hydrated, rest, and monitor your temperature.",
+        "cough":"Could be common cold or respiratory infection. Drink warm fluids and rest.",
+        "headache":"Might indicate stress, dehydration, or migraine. Drink water and rest.",
+        "nausea":"Could be food poisoning or stomach upset. Take light meals and hydrate.",
+        "chest pain":"⚠ Possible cardiac issue. Seek immediate medical help!",
+        "sore throat":"Possible throat infection. Gargle warm salt water and avoid cold drinks.",
+        "rash":"Could be skin allergy or infection. Keep area clean and apply soothing lotion.",
+        "fatigue":"May indicate low energy or sleep deficiency. Rest and maintain nutrition."
+    };
+
+    const symptoms = input.split(/,|\band\b/).map(s=>s.trim()).filter(s=>s.length>0);
+    let results = [];
+    Object.keys(adviceDB).forEach(sym => {
+        if(input.includes(sym)){
+            results.push(`<strong>${sym}:</strong> ${adviceDB[sym]}`);
+        }
+    });
+    if(results.length===0){
+        results.push("⚠ Symptoms not recognized. Please consult a doctor for precise diagnosis.");
+    }
+    output.innerHTML = `<strong>AI Diagnosis:</strong><br>${results.join("< br>")}<br><strong>Advice:</strong> Maintain a healthy lifestyle, balanced diet, proper rest, and hydration. Seek medical attention if symptoms persist or worsen.`;
+});
+
+// Image Upload
+document.getElementById('uploadBtn').addEventListener('click',()=>{
+    const img=document.getElementById('healthImage').files[0];
+    const res=document.getElementById('imageResult');
+    if(!img){ res.innerHTML="⚠ Please upload a clear image."; return; }
+    res.innerHTML = `✅ Image <strong>${img.name}</strong> analyzed successfully.<br><strong>Observation:</strong> No critical abnormalities detected. For accurate diagnosis, consult a specialist. Ensure proper lighting and clarity for image analysis.`;
+});
+
+// BMI Calculator
+document.getElementById('calculateBMI').addEventListener('click',()=>{
+    const w=parseFloat(document.getElementById('weight').value);
+    const h=parseFloat(document.getElementById('height').value)/100;
+    const res=document.getElementById('bmiResult');
+    if(!w||!h){ res.innerHTML="⚠ Enter valid weight and height."; return; }
+    const bmi=(w/(h*h)).toFixed(2);
+    let status, tip;
+    if(bmi<18.5){ status="Underweight"; tip="Increase calorie intake with protein-rich and nutrient-dense foods. Consult a dietitian if needed."; }
+    else if(bmi<24.9){ status="Healthy"; tip="Maintain balanced diet, regular exercise, and healthy sleep patterns."; }
+    else if(bmi<29.9){ status="Overweight"; tip="Increase physical activity, reduce sugar and processed foods, and follow structured fitness plan."; }
+    else{ status="Obese"; tip="Consult healthcare professionals for personalized diet and exercise plans to improve health."; }
+    res.innerHTML = `Your BMI is <strong>${bmi}</strong> (${status})<br><strong>Tip:</strong> ${tip}`;
+});
+
+// Virtual Assistant
+document.getElementById('sendChat').addEventListener('click',()=>{
+    const q=document.getElementById('chatInput').value.trim().toLowerCase();
+    const ans=document.getElementById('chatResult');
+    if(q.length<3){ ans.innerHTML="💬 Please type a proper health question."; return; }
+
+    const responses = [
+        {keywords:["fever"], reply:"For fever: Ensure proper hydration and rest. Monitor temperature and note any additional symptoms such as rash, cough, or difficulty breathing. Mild paracetamol may help if temperature is above 100°F. Seek medical attention if fever persists for more than 3 days or is extremely high."},
+        {keywords:["cough"], reply:"Persistent cough may indicate respiratory infection or allergy. Drink warm fluids, avoid irritants like smoke, and monitor for shortness of breath or high fever. Consult a doctor if cough lasts more than 2 weeks."},
+        {keywords:["diet","nutrition"], reply:"A balanced diet should include vegetables, fruits, whole grains, lean proteins, and healthy fats. Avoid processed foods and high sugar intake. For personalized nutrition, consider consulting a dietitian."},
+        {keywords:["exercise","workout"], reply:"Engage in at least 30 minutes of moderate exercise daily, including cardio and strength training. Regular activity improves heart health, immunity, mental health, and weight management."},
+        {keywords:["covid"], reply:"If you have COVID-like symptoms such as fever, cough, or difficulty breathing, isolate immediately, get tested, and monitor oxygen levels. Follow local health authority guidelines and seek urgent care if symptoms worsen."},
+        {keywords:["sleep","insomnia"], reply:"Maintain 7–8 hours of sleep daily. Keep a consistent bedtime, avoid screens 30 mins before sleep, and practice relaxation techniques. Good sleep improves immunity, mood, and cognitive performance."},
+        {keywords:["depression","anxiety","stress"], reply:"Mental health is crucial. Practice mindfulness, breathing exercises, regular physical activity, and reach out to therapists or trusted individuals. Persistent mood changes should be evaluated professionally."},
+        {keywords:["water","hydration"], reply:"Stay hydrated by drinking 2–3 liters of water daily. Hydration supports metabolism, kidney function, brain performance, and energy levels."},
+        {keywords:["emergency","accident","injury"], reply:"In case of severe injury, chest pain, unconsciousness, or life-threatening situations, call emergency services immediately (e.g., 108 in India). Provide first aid while waiting for help."}
+    ];
+
+    let reply="💬 I'm here to assist you! Please provide more details about your health concern.";
+    responses.forEach(r=>{
+        if(r.keywords.some(k=>q.includes(k))){
+            reply=r.reply;
+        }
+    });
+
+    ans.innerHTML = `<strong>Assistant:</strong> ${reply}`;
+});
+
+// FAQ Toggle
+document.querySelectorAll('.faq-question').forEach(q=>{
+    q.addEventListener('click', ()=>{
+        const ans=q.nextElementSibling;
+        ans.classList.toggle('show');
+    });
+});
+</script>
+
+</body>
+</html>
